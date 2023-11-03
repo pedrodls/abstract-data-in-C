@@ -15,4 +15,15 @@ typedef struct el
 
 } employeeList;
 
+employeeList* initEmployeeList(employeeList *list){
+
+    employee *e;
+
+    employeeList *aux = list;
+
+    aux->prox = e;
+
+    return list;
+}
+
 

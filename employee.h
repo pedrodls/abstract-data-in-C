@@ -2,7 +2,7 @@ typedef struct e employee;
 
 typedef struct el employeeList;
 
-employee* createEmptyList(employeeList list);
+employeeList* initEmployeeList(employeeList *list);
 
 employee* createEmployee(employee emp);
 
