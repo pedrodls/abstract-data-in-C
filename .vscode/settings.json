@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "employee.h": "c",
+        "*.tcc": "c",
+        "exception": "c",
+        "cmath": "c",
+        "random": "c",
+        "iosfwd": "c",
+        "limits": "c",
+        "numbers": "c",
+        "stdexcept": "c",
+        "streambuf": "c",
+        "system_error": "c",
+        "tuple": "c",
+        "typeinfo": "c"
+    }
+}
