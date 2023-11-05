@@ -60,6 +60,10 @@ void findAll(employees* emp){
     }
     printf("-----------------------------------------\n");
 }
+
+int length(employees* emp){
+    return emp -> length;
+}
 //Método para encontrar um funcionário apartir do seu código
 /*employees* findEmployee(int code){
 
