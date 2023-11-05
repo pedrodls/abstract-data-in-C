@@ -4,13 +4,13 @@ typedef struct Employees employees;
 
 
 employees* create(); //cria a estrutura
-int insertEmployee(employees *emp, char *name, char *role, int code, float salary); //insere um funcionário
+int insertEmployee(employees *emp, char *name, char *role, float salary); //insere um funcionário
 void findAll(employees* emp); //mostra todos os funcionários
-employees* findEmployee(int code); //encontra um funcionário pelo código
+void findEmployee(employees* emp,int code); //encontra um funcionário pelo código
 int length(employees *emp); //tamanho de funcionários existentes
+int updateEmployee(employees *emp, int code, char *name, char *role, float salary, int isActive); //actualiza dado de um funcionário pelo código. Retorna 0 (falha). 1 (sucesso)
 char* getDescription(int code, char *prop); //atribuito específico de um funcionário pelo código
 char* showAllDescription(); //mostra todos os atributos requeridos pelo funcionário
-int updateEmployee(int code, char *prop, char *description); //actualiza um dado específico de um funcionário
 short block(int code); //inactiva um funcionário
 short enable(int code); //activa um funcionário
 void destroy(employees **emp); //no fim do programa ele desaloca a memória
