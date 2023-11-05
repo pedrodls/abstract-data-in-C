@@ -1,6 +1,6 @@
 #include "employee.h"
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
 
 
 //Estrutura de atributos de um Funcionário
@@ -26,7 +26,7 @@ employees *create(){
 }
 
 //Método para inserção de um Funcionário
-employees *insertEmployee(employees* emp, char *name, char *role, int code, float salary){
+int insertEmployee(employees* emp, char *name, char *role, int code, float salary){
     employees *newEmployee = emp;
 
     if(newEmployee -> employee == NULL){ //primeiro funcionário
@@ -34,7 +34,7 @@ employees *insertEmployee(employees* emp, char *name, char *role, int code, floa
         if(newEmployee ->employee != NULL) 
             newEmployee -> length = 1;
         else
-        return NULL;     
+        return -1;     
     }
 
     if(newEmployee -> length != 1){
@@ -48,9 +48,18 @@ employees *insertEmployee(employees* emp, char *name, char *role, int code, floa
     newEmployee -> employee[newEmployee -> length - 1].code = code;
     newEmployee -> employee[newEmployee -> length - 1].salary = salary;
 
-    return newEmployee;
+    return newEmployee -> length;
 }
 
+void findAll(employees* emp){
+    for(int i = 0; i < emp->length; i++){
+        printf("Nome do Funcionário (%d): %s\n", (i+1),emp->employee[i].name);
+        printf("Cargo: %s\n", emp->employee[i].role);
+        printf("Código: %d\n", emp->employee[i].code);
+        printf("Salário: %.2f\n", emp->employee[i].salary);
+    }
+    printf("-----------------------------------------\n");
+}
 //Método para encontrar um funcionário apartir do seu código
 /*employees* findEmployee(int code){
 
