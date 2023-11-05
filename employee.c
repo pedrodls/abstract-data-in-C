@@ -2,51 +2,65 @@
 #include <stdlib.h>
 #include <string.h>
 
-//definição da struc Employee (atributos)
-struct Employee{
+
+//Estrutura de atributos de um Funcionário
+struct employee{
     char *name;
     char *role;
     int code;
     float salary;
 };
+//definição da struct Funcionários (atributos) - Vetor de Funcionários
+struct Employees{
+    int length;
+    struct employee *employee;
+};
 
-/*
+//Método para Alocação da Memória da TAD de Funcionário
+employees *create(){
+    employees *newEmployeeList = (employees*)malloc(sizeof(employees));
+    newEmployeeList->length = 0;
+    newEmployeeList -> employee = NULL;
 
-typedef struct el
-{
-    employee emp;
-    struct employeeList *prox;
-
-} employeeList;
-
-employeeList* initEmployeeList(employeeList *list){
-
-    employee *e;
-
-    employeeList *aux = list;
-
-    aux->prox = e;
-
-    return list;
+    return newEmployeeList;
 }
 
-*/
+//Método para inserção de um Funcionário
+employees *insertEmployee(employees* emp, char *name, char *role, int code, float salary){
+    employees *newEmployee = emp;
 
-//Método para criação de um Funcionário
-employee *createEmployee(char *name, char *role, int code, float salary){
-    employee *newEmployee = (employee*)malloc(sizeof(employee));
-    newEmployee->name = name;
-    newEmployee->role = role;
-    newEmployee->code = code;
-    newEmployee->salary = salary;
+    if(newEmployee -> employee == NULL){ //primeiro funcionário
+        newEmployee -> employee = (struct employee*)malloc(sizeof(struct employee));
+        if(newEmployee ->employee != NULL) 
+            newEmployee -> length = 1;
+        else
+        return NULL;     
+    }
+
+    if(newEmployee -> length != 1){
+        newEmployee -> length++;
+        //aumentando o espaço para adicionar mais um funcionário
+        newEmployee -> employee = (struct employee*)realloc(newEmployee -> employee, newEmployee -> length * sizeof(struct employee));
+    }
+
+    newEmployee -> employee[newEmployee -> length - 1].name = name;
+    newEmployee -> employee[newEmployee -> length - 1].role = role;
+    newEmployee -> employee[newEmployee -> length - 1].code = code;
+    newEmployee -> employee[newEmployee -> length - 1].salary = salary;
 
     return newEmployee;
 }
 
-void destroy(employee **emp){
-    employee *dataEmployee = *emp;
+//Método para encontrar um funcionário apartir do seu código
+/*employees* findEmployee(int code){
 
-    free(dataEmployee);
+}*/
+
+//Desaloca a memória no fim da execução do programa
+void destroy(employees **emp){
+    employees *EmployeeList = *emp;
+
+    free(EmployeeList-> employee);
     *emp = NULL;
 }
 
