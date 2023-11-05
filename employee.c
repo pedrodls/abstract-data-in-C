@@ -6,6 +6,7 @@
 //Estrutura de atributos de um Funcionário
 struct employee{
     char *name;
+    short* isActive;
     char *role;
     int code;
     float salary;
@@ -47,16 +48,22 @@ int insertEmployee(employees* emp, char *name, char *role, int code, float salar
     newEmployee -> employee[newEmployee -> length - 1].role = role;
     newEmployee -> employee[newEmployee -> length - 1].code = code;
     newEmployee -> employee[newEmployee -> length - 1].salary = salary;
+    newEmployee -> employee[newEmployee -> length - 1].isActive = 1;
+
 
     return newEmployee -> length;
 }
 
 void findAll(employees* emp){
     for(int i = 0; i < emp->length; i++){
-        printf("Nome do Funcionário (%d): %s\n", (i+1),emp->employee[i].name);
-        printf("Cargo: %s\n", emp->employee[i].role);
-        printf("Código: %d\n", emp->employee[i].code);
-        printf("Salário: %.2f\n", emp->employee[i].salary);
+        if(emp->employee[i].isActive){
+            printf("Nome do Funcionário (%d): %s\n", (i+1),emp->employee[i].name);
+            printf("Cargo: %s\n", emp->employee[i].role);
+            printf("Código: %d\n", emp->employee[i].code);
+            printf("Salário: %.2f\n", emp->employee[i].salary);
+        }else{
+           printf("Código: %d (Bloqueado)\n", emp->employee[i].code);
+        }
     }
     printf("-----------------------------------------\n");
 }
