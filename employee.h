@@ -1,4 +1,4 @@
-typedef struct emp employee;
+typedef struct Employee employee;
 
 //typedef struct el employeeList;
 

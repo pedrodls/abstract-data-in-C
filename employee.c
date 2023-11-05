@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct emp{
+//definição da struc Employee (atributos)
+struct Employee{
     char *name;
     char *role;
     int code;
@@ -30,6 +31,8 @@ employeeList* initEmployeeList(employeeList *list){
 }
 
 */
+
+//Método para criação de um Funcionário
 employee *createEmployee(char *name, char *role, int code, float salary){
     employee *newEmployee = (employee*)malloc(sizeof(employee));
     newEmployee->name = name;
@@ -40,4 +43,10 @@ employee *createEmployee(char *name, char *role, int code, float salary){
     return newEmployee;
 }
 
+void destroy(employee **emp){
+    employee *dataEmployee = *emp;
+
+    free(dataEmployee);
+    *emp = NULL;
+}
 
