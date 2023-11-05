@@ -1,21 +1,14 @@
-typedef struct e employee;
+typedef struct emp employee;
 
-typedef struct el employeeList;
+//typedef struct el employeeList;
 
-employeeList* initEmployeeList(employeeList *list);
-
-employee* createEmployee(employee emp);
-
+//employeeList* initEmployeeList(employeeList *list);
+employee* createEmployee(char *name, char *role, int code, float salary);
 employee* findEmployee(int code);
-
-employeeList* findAll();
-
-char* getDescription(int code, char* prop);
-
+//employeeList* findAll();
+char* getDescription(int code, char *prop);
 char* showAllDescriptio();
-
-int updateEmployee(int code, char* prop, char* description);
-
-short block(int code, float newBadge);
-
+int updateEmployee(int code, char *prop, char *description);
+short block(int code);
 short enable(int code);
+void destroy(employee **emp);

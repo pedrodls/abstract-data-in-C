@@ -1,16 +1,19 @@
 #include "employee.h"
+#include <stdlib.h>
+#include <string.h>
 
-typedef struct e
-{
+struct emp{
     char *name;
-    char *gender;
-    short age;
+    char *role;
+    int code;
+    float salary;
+};
 
-} employee;
+/*
 
 typedef struct el
 {
-    employee employee;
+    employee emp;
     struct employeeList *prox;
 
 } employeeList;
@@ -24,6 +27,17 @@ employeeList* initEmployeeList(employeeList *list){
     aux->prox = e;
 
     return list;
+}
+
+*/
+employee *createEmployee(char *name, char *role, int code, float salary){
+    employee *newEmployee = (employee*)malloc(sizeof(employee));
+    newEmployee->name = name;
+    newEmployee->role = role;
+    newEmployee->code = code;
+    newEmployee->salary = salary;
+
+    return newEmployee;
 }
 
 
