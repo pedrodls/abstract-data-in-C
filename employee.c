@@ -94,22 +94,49 @@ void findEmployee(employees* emp, int code){ //encontra um funcionário pelo có
 
 } 
 
+//guarda a quantidade de funcionários
 int length(employees* emp){
     return emp -> length;
 }
+//Métodos Get da Função
+char* getName(employees *emp, int index){ //retorna o nome do funcionário
+    return emp->employee[index].name;
+}
+char* getRole(employees *emp, int index){ //retorna o cargo do funcionário
+    return emp->employee[index].role;
+}
+float getSalary(employees *emp, int index){//retorna o salario do funcionário
+    return emp->employee[index].salary;
+}
+int getCode(employees *emp, int index){ //retorna o codigo do funcionário
+    return emp->employee[index].code;
+}
+short getIsActive(employees *emp, int index){ //retorna o estado do funcionário
+    return emp->employee[index].isActive;
+}
 
-int updateEmployee(employees *emp, int code, char *name, char *role, float salary, int isActive){
+//actualiza os dados de um funcionário específico
+int updateEmployee(employees *emp, int code, char *name, char *role, float salary, short isActive){
         for(int i = 0; i < emp->length; i++){
             if(emp->employee[i].code == code){
                 strcpy(emp->employee[i].name, name);
                 strcpy(emp->employee[i].role, role);
                 emp->employee[i].salary = salary;
                 emp->employee[i].isActive = isActive;
-                return 1;
+                return 1; //sucesso
             }
         }
-    return 0;
+    return 0; //falha
 }
+
+int getIndex(employees *emp, int code){ //retorna o índice do funcionário do código enviado
+    short result = 0;
+        for(int i = 0; i < emp->length; i++){
+            if(emp->employee[i].code == code)
+                return i;            
+        }
+    return -1;
+} 
 
 //Desaloca a memória no fim da execução do programa
 void destroy(employees **emp){
