@@ -26,14 +26,16 @@ int main()
                 findAll(myEmployees);
             break;
             case 2:
-                insert(myEmployees) == -1 ? printf("Falha ao Inserir Funcionário\n") : printf("Funcionário de código %d inserido\n!", answer);
+                int code_2;
+                code_2 = insert(myEmployees) == -1;
+                code_2 ? printf("Falha ao Inserir Funcionário\n") : printf("Funcionário de código %d inserido\n!", code_2);
             break;
             case 3:
                 int code_3;
                 printf("Código: ");
                 scanf("%d",&code_3);
                 findEmployee(myEmployees, code_3);
-            ;break;
+            break;
             case 4:
                 int code_4;
                 printf("Código: ");
@@ -42,13 +44,26 @@ int main()
                 if(index == -1) printf("Funcionário não Encontrado!\n");
                 else 
                     update(myEmployees, code_4, index) ? printf("Funcionário (%d) Actualizado!\n",code_4) : printf("Falha ao Actualizar!\n");
-            ;break;
+            break;
+            case 5:
+                int code_5;
+                printf("Código: ");
+                scanf("%d",&code_5);
+                block(myEmployees, code_5) ? printf("Funcionário Bloqueado!\n") : printf("Falha ao Bloquear!\n");
+                break;
+            case 6: 
+                int code_6;
+                printf("Código: ");
+                scanf("%d",&code_6);
+                enable(myEmployees, code_6) ? printf("Funcionário Desbloqueado!\n") : printf("Falha ao Desbloquear!\n");
+                break;
+            break;
             default:
                 printf("Opção Inválida");
+                answer = 0;
             ;break;
         }
     }
-    //int x = insertEmployee(myEmployees, "bruno", "programador", 1, 2000);
 
     destroy(&myEmployees);
     return 0;
@@ -81,7 +96,7 @@ int insert(employees *emp){
     scanf("%s",role);
     printf("Salário: ");
     scanf("%f",&salary);   
-    return insertEmployee(emp,name,role,salary);
+    return insertEmployee(emp,name,role,salary, 1);
 }
 //getDescription(emp,1,"name")
 int update(employees *emp, int code, int index){

@@ -7,7 +7,7 @@
 //Estrutura de atributos de um Funcionário
 struct employee{
     char name[30];
-    short isActive;
+    int isActive;
     char role[20];
     int code;
     float salary;
@@ -28,7 +28,7 @@ employees *create(){
 }
 
 //Método para inserção de um Funcionário
-int insertEmployee(employees* emp, char *name, char *role, float salary){
+int insertEmployee(employees* emp, char *name, char *role, float salary, int isActive){
     employees *newEmployee = emp;
 
     if(newEmployee -> length != 0){
@@ -44,15 +44,13 @@ int insertEmployee(employees* emp, char *name, char *role, float salary){
         else
             return -1;     
 
-        printf("%ld - %d\n",sizeof(newEmployee->employee), newEmployee->length);
-
     }
 
     strcpy(newEmployee -> employee[newEmployee -> length - 1].name, name);
     strcpy(newEmployee -> employee[newEmployee -> length - 1].role, role);
     newEmployee -> employee[newEmployee -> length - 1].code = newEmployee -> length;
     newEmployee -> employee[newEmployee -> length - 1].salary = salary;
-    newEmployee -> employee[newEmployee -> length - 1].isActive = 1;
+    newEmployee -> employee[newEmployee -> length - 1].isActive = isActive;
 
     return newEmployee -> length;
 }
@@ -75,7 +73,7 @@ void findAll(employees* emp){
 }
 
 void findEmployee(employees* emp, int code){ //encontra um funcionário pelo código
-    short result = 0;
+    int result = 0;
         for(int i = 0; i < emp->length; i++){
             if(emp->employee[i].code == code){
                 printf("Nome do Funcionário (%d): %s\n", (i+1),emp->employee[i].name);
@@ -111,18 +109,18 @@ float getSalary(employees *emp, int index){//retorna o salario do funcionário
 int getCode(employees *emp, int index){ //retorna o codigo do funcionário
     return emp->employee[index].code;
 }
-short getIsActive(employees *emp, int index){ //retorna o estado do funcionário
+int getIsActive(employees *emp, int index){ //retorna o estado do funcionário
     return emp->employee[index].isActive;
 }
 
 //actualiza os dados de um funcionário específico
-int updateEmployee(employees *emp, int code, char *name, char *role, float salary, short isActive){
+int updateEmployee(employees *emp, int code, char *name, char *role, float salary, int isActive){
         for(int i = 0; i < emp->length; i++){
             if(emp->employee[i].code == code){
                 strcpy(emp->employee[i].name, name);
                 strcpy(emp->employee[i].role, role);
                 emp->employee[i].salary = salary;
-                emp->employee[i].isActive = isActive;
+                emp->employee[i].isActive = 1;
                 return 1; //sucesso
             }
         }
@@ -130,7 +128,6 @@ int updateEmployee(employees *emp, int code, char *name, char *role, float salar
 }
 
 int getIndex(employees *emp, int code){ //retorna o índice do funcionário do código enviado
-    short result = 0;
         for(int i = 0; i < emp->length; i++){
             if(emp->employee[i].code == code)
                 return i;            
@@ -138,6 +135,18 @@ int getIndex(employees *emp, int code){ //retorna o índice do funcionário do c
     return -1;
 } 
 
+int block(employees *emp, int code){//inactiva um funcionário
+    int index = getIndex(emp, code);
+    if(index == -1) return 0;
+    emp -> employee[index].isActive = 0;
+    return 1;
+} 
+int enable(employees *emp, int code){ //activa um funcionário
+    int index = getIndex(emp, code);
+    if(index == -1) return 0;
+    emp -> employee[index].isActive = 1;
+    return 1;
+}
 //Desaloca a memória no fim da execução do programa
 void destroy(employees **emp){
     employees *EmployeeList = *emp;
