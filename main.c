@@ -18,6 +18,7 @@ int main()
      return 0;
    }
 
+	int code;
     while(answer){
         option = menu(myEmployees);
         switch(option){
@@ -26,36 +27,31 @@ int main()
                 findAll(myEmployees);
             break;
             case 2:
-                int code_2;
-                code_2 = insert(myEmployees) == -1;
-                code_2 ? printf("Falha ao Inserir Funcionário\n") : printf("Funcionário de código %d inserido\n!", code_2);
+                code = insert(myEmployees) == -1;
+                code ? printf("Falha ao Inserir Funcionário\n") : printf("Funcionário de código %d inserido\n!", code);
             break;
-            case 3:
-                int code_3;
+            case 3:            
                 printf("Código: ");
-                scanf("%d",&code_3);
-                findEmployee(myEmployees, code_3);
+                scanf("%d",&code);
+                findEmployee(myEmployees, code);
             break;
             case 4:
-                int code_4;
                 printf("Código: ");
-                scanf("%d",&code_4);
-                int index = getIndex(myEmployees,code_4);
+                scanf("%d",&code);
+                int index = getIndex(myEmployees,code);
                 if(index == -1) printf("Funcionário não Encontrado!\n");
                 else 
-                    update(myEmployees, code_4, index) ? printf("Funcionário (%d) Actualizado!\n",code_4) : printf("Falha ao Actualizar!\n");
+                    update(myEmployees, code, index) ? printf("Funcionário (%d) Actualizado!\n",code) : printf("Falha ao Actualizar!\n");
             break;
             case 5:
-                int code_5;
                 printf("Código: ");
-                scanf("%d",&code_5);
-                block(myEmployees, code_5) ? printf("Funcionário Bloqueado!\n") : printf("Falha ao Bloquear!\n");
+                scanf("%d",&code);
+                block(myEmployees, code) ? printf("Funcionário Bloqueado!\n") : printf("Falha ao Bloquear!\n");
                 break;
             case 6: 
-                int code_6;
                 printf("Código: ");
-                scanf("%d",&code_6);
-                enable(myEmployees, code_6) ? printf("Funcionário Desbloqueado!\n") : printf("Falha ao Desbloquear!\n");
+                scanf("%d",&code);
+                enable(myEmployees, code) ? printf("Funcionário Desbloqueado!\n") : printf("Falha ao Desbloquear!\n");
                 break;
             break;
             default:
