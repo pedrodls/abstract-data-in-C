@@ -6,9 +6,9 @@
 
 //Estrutura de atributos de um Funcionário
 struct employee{
-    char *name;
+    char name[30];
     short isActive;
-    char *role;
+    char role[20];
     int code;
     float salary;
 };
@@ -34,7 +34,7 @@ int insertEmployee(employees* emp, char *name, char *role, float salary){
     if(newEmployee -> length != 0){
         newEmployee -> length++;
         //aumentando o espaço para adicionar mais um funcionário
-        newEmployee -> employee = (struct employee*)realloc(newEmployee -> employee, (newEmployee -> length) * sizeof(struct employee));
+        newEmployee -> employee = (struct employee*)realloc(newEmployee->employee, (newEmployee -> length) * sizeof(newEmployee->employee));
     }
 
     if(newEmployee -> employee == NULL){ //primeiro funcionário
@@ -43,10 +43,13 @@ int insertEmployee(employees* emp, char *name, char *role, float salary){
             newEmployee -> length = 1;
         else
             return -1;     
+
+        printf("%ld - %d\n",sizeof(newEmployee->employee), newEmployee->length);
+
     }
 
-    strcpy(newEmployee -> employee[newEmployee -> length - 1].name,name);
-    strcpy(newEmployee -> employee[newEmployee -> length - 1].role,role);
+    strcpy(newEmployee -> employee[newEmployee -> length - 1].name, name);
+    strcpy(newEmployee -> employee[newEmployee -> length - 1].role, role);
     newEmployee -> employee[newEmployee -> length - 1].code = newEmployee -> length;
     newEmployee -> employee[newEmployee -> length - 1].salary = salary;
     newEmployee -> employee[newEmployee -> length - 1].isActive = 1;
@@ -67,6 +70,7 @@ void findAll(employees* emp){
         }else{
            printf("Código: %d (Bloqueado)\n", emp->employee[i].code);
         }
+        printf("-----------------------------------------\n\n");
     }
 }
 
@@ -78,13 +82,16 @@ void findEmployee(employees* emp, int code){ //encontra um funcionário pelo có
                 printf("Cargo: %s\n", emp->employee[i].role);
                 printf("Código: %d\n", emp->employee[i].code);
                 printf("Salário: %.2f\n", emp->employee[i].salary);
-                printf("Estado: %s\n", emp->employee[i].isActive ? "Activo": "Bloqueado");
+                printf("Estado: %s\n", (emp->employee[i].isActive) == 1 ? "Activo": "Bloqueado");
                 result = 1;
                 break;
             }
         }
     if(!result)
         printf("Funcionário Não Existe!\n");
+
+    printf("-----------------------------------------\n\n");
+
 } 
 
 int length(employees* emp){

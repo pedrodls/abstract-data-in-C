@@ -64,7 +64,7 @@ int menu(employees *emp){
 }
 
 int insert(employees *emp){
-    char name[40], role[] = "titulo";
+    char name[30], role[20];
     float salary;
     printf("Nome: ");
     scanf("%s",name);
