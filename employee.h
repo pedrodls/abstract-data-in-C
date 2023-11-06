@@ -1,6 +1,6 @@
 /*Instruções para rodar o programa no terminal - Linux
     1 - acesse o directório principal onde contém os arquivos employee.c, employee.h, main.c
-    2 - Como Já foi Feita a compilação do objecto employee.o de implementação e o main, simplesmente rode o comando "./main no terminal"
+    2 - Como Já foi Feita a compilação do objecto employee.o de implementação e o main, simplesmente rode o comando ./main no terminal
     Foi Usado VsCode (linux), compilador gcc baixado como extensão
 */
 
